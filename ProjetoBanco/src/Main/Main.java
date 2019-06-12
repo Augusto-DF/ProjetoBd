@@ -11,8 +11,7 @@ public class Main {
 		try {
 			pdao.inserir(p);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Erro ao inserir!");
 		}
 		
 	}

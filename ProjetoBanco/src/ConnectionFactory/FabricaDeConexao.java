@@ -11,9 +11,9 @@ public class FabricaDeConexao {
 	
 	public Connection getConnection() {	
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			return DriverManager.getConnection(
-                    "jdbc:mysql://localhost/restaurante?useTimezone=true&serverTimezone=UTC", "root", "");
+                    "jdbc:mysql://localhost/restaurante?useTimezone=true&serverTimezone=UTC", "root", "imd@2019");
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
