@@ -13,7 +13,7 @@ public class FabricaDeConexao {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(
-                    "jdbc:mysql://localhost/restaurante?useTimezone=true&serverTimezone=UTC&useSSL=false", "root", ""/*"imd@2019"*/);
+                    "jdbc:mysql://localhost/restaurante?useTimezone=true&serverTimezone=UTC&useSSL=false", "root", /*""*/"imd@2019");
 			
 		} catch (Exception e) {
 			System.out.println("Erro ao conectar no banco");
