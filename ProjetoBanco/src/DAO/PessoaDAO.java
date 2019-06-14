@@ -52,13 +52,13 @@ public class PessoaDAO {
 			throw new Exception("o valor passado nao pode ser nulo");
 		}
 		
-		String SQL = "UPDATE PESSOA SET nome=(?), cpf=(?), datanasc=(?), senha=(?)";
+		String SQL = "UPDATE PESSOA SET nome=(?),  datanasc=(?), senha=(?) WHERE cpf=(?)";
 		conn = this.conn;
-		ps = conn.prepareStatement(SQL);
-		ps.setString(2, p.getCpf());
+		ps = conn.prepareStatement(SQL);		
 		ps.setString(1, p.getNome());
-		ps.setInt(3, p.getDataNasc());
-		ps.setString(4, p.getSenha());
+		ps.setInt(2, p.getDataNasc());
+		ps.setString(3, p.getSenha());
+		ps.setString(4, p.getCpf());
 		ps.executeUpdate();	
 	}
 } 

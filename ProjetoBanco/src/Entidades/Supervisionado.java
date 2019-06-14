@@ -1,17 +1,18 @@
 package Entidades;
 
-public class Funcionario extends Pessoa{
+public class Supervisionado extends Funcionario {
+	private String cpfGerente;
 	
-	public Funcionario() {
+	public Supervisionado() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Funcionario(String nome, String cpf, int dataNasc, String senha) {
+	
+	public Supervisionado(Gerente _gerente, String nome, String cpf, int dataNasc, String senha) {
 		super(nome, cpf, dataNasc, senha);
-		// TODO Auto-generated constructor stub
+		this.cpfGerente = _gerente.getCpf();
 	}
-
+	
 	public String getNome() {
 		return super.getNome();
 	}
@@ -44,5 +45,11 @@ public class Funcionario extends Pessoa{
 		super.setSenha(senha);
 	}
 	
+	public String getCpfGerente() {
+		return cpfGerente;
+	}
 	
+	public void setCpfGerente(String cpfGerente) {
+		this.cpfGerente = cpfGerente;
+	}
 }

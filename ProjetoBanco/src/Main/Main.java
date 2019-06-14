@@ -1,19 +1,19 @@
 package Main;
 
+import DAO.FuncionarioDAO;
 import DAO.PessoaDAO;
-import Entidades.Pessoa;
+import Entidades.*;
 
 public class Main {
 	public static void main(String[] args) {
 		
-		Pessoa p = new Pessoa("Lucas Gabriellll", "11858409403", 19981017, "abbdd");
-		PessoaDAO pdao = new PessoaDAO();
+		Funcionario f = new Funcionario("Oswald Cobblepot", "15628479304", 19900915, "Pinguins");
+		FuncionarioDAO fdao = new FuncionarioDAO();
 		try {
-			pdao.atualizar(p);
+			fdao.inserir(f);
 		} catch (Exception e) {
-			System.out.println("Erro ao inserir!");
+			//System.out.println("Erro ao inserir!");
 			e.printStackTrace();
 		}
-		
 	}
 }

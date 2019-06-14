@@ -1,17 +1,17 @@
 package Entidades;
 
-public class Funcionario extends Pessoa{
-	
-	public Funcionario() {
+public class Cliente extends Pessoa{
+
+	public Cliente() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Funcionario(String nome, String cpf, int dataNasc, String senha) {
+	public Cliente(String nome, String cpf, int dataNasc, String senha) {
 		super(nome, cpf, dataNasc, senha);
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public String getNome() {
 		return super.getNome();
 	}
@@ -44,5 +44,4 @@ public class Funcionario extends Pessoa{
 		super.setSenha(senha);
 	}
 	
-	
-}
+}	
