@@ -28,4 +28,33 @@ public class GerenteDAO {
 		//ps.setFloat(2, f.getSalario());
 		ps.executeUpdate();	
 	}
+	
+	public void deletar(Gerente g) throws Exception {
+		PreparedStatement ps= null;
+		Connection conn = null;
+		if(g==null)
+			throw new Exception("o valor passado nao pode ser nulo");
+		
+		String SQL = "DELETE FROM gerente WHERE cpf=" + "(?)";
+		conn = this.conn;
+		
+		ps = conn.prepareStatement(SQL);
+		ps.setString(1, g.getCpf());
+		ps.executeUpdate();	
+		
+		fd.deletar(g);
+	}
+	
+	public void atualizar(Gerente g) throws Exception{
+		PreparedStatement ps= null;
+		Connection conn = null;
+		
+		if(g == null) {
+			throw new Exception("o valor passado nao pode ser nulo");
+		}
+		
+		conn = this.conn;
+		
+		fd.atualizar(g);
+	}
 }

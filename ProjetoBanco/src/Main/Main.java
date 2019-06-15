@@ -13,8 +13,8 @@ public class Main {
 		Cozinheiro f = new Cozinheiro(g,"Oswald Cobblepot", "15628479304", 19900915, "Pinguins");
 		CozinheiroDAO fdao = new CozinheiroDAO();
 		try {
-			gdao.inserir(g);
-			fdao.inserir(f);
+			gdao.atualizar(g);
+			//fdao.inserir(f);
 		} catch (Exception e) {
 			//System.out.println("Erro ao inserir!");
 			e.printStackTrace();

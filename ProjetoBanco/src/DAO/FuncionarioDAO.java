@@ -22,7 +22,9 @@ public class FuncionarioDAO {
 			throw new Exception("o valor passado nao pode ser nulo");
 		String SQL = "INSERT INTO funcionario (cpf)"/*+ ",(salario)"*/ + "values (?)"/*+ ",(?)"*/;
 		conn = this.conn;
+		
 		pd.inserir(f);
+		
 		ps = conn.prepareStatement(SQL);
 		ps.setString(1, f.getCpf());
 		//ps.setFloat(2, f.getSalario());
@@ -36,10 +38,12 @@ public class FuncionarioDAO {
 			throw new Exception("o valor passado nao pode ser nulo");
 		String SQL = "DELETE FROM Funcionario WHERE cpf=" + "(?)";
 		conn = this.conn;
-		pd.deletar(f);
+		
 		ps = conn.prepareStatement(SQL);
 		ps.setString(1, f.getCpf());
 		ps.executeUpdate();	
+		
+		pd.deletar(f);
 	}
 	
 	public void atualizar(Funcionario f) throws Exception{
@@ -52,12 +56,14 @@ public class FuncionarioDAO {
 		
 		//String SQL = "UPDATE Funcionario SET salario=(?) WHERE cpf=(?)";
 		conn = this.conn;
-		pd.atualizar(f);
+		
 		/*
 		ps = conn.prepareStatement(SQL);
 		ps.setFloat(1, f.getSalario());
 		ps.setString(2, f.getCpf());
 		ps.executeUpdate();	
 		*/
+		
+		pd.atualizar(f);
 	}
 }
