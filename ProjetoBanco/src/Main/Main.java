@@ -19,8 +19,13 @@ public class Main {
 		
 		Estoque es = new Estoque(123456789, gg);
 		EstoqueDAO esdao = new EstoqueDAO();
+		
+		ItensEstoque ie = new ItensEstoque(es, "Fanta Laranja", 200);
+		ItemEstoqueDAO iedao = new ItemEstoqueDAO();
+		
 		try {
-			esdao.atualizar(es);
+			iedao.atualizar(ie);
+			//esdao.atualizar(es);
 			//cdao.atualizar(c);
 			//gdao.inserir(gg);
 			//fdao.atualizar(f);
