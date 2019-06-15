@@ -25,8 +25,12 @@ public class Main {
 		
 		Pedido pd = new Pedido(1, c, "Corpo");
 		PedidoDAO pddao = new PedidoDAO();
-	
+		
+		ItensPedido ip = new ItensPedido(pd, "Cerveja", 13.00, f, "Sem gas, com sabor de fanta mas sem fanta", es);
+		ItensPedidoDAO ipdao = new ItensPedidoDAO();
+		
 		try {
+			ipdao.inserir(ip);
 			//pddao.atualizar(pd);
 			//iedao.atualizar(ie);
 			//esdao.atualizar(es);
