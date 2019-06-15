@@ -11,10 +11,12 @@ public class Main {
 		GerenteDAO gdao = new GerenteDAO();
 		
 		Cozinheiro f = new Cozinheiro(g,"Oswald Cobblepot", "15628479304", 19900915, "Pinguins");
+		Cozinheiro ff = new Cozinheiro(g,"Oswald Cobblepot2", "15628479304", 19900915, "Pinguins");
+
 		CozinheiroDAO fdao = new CozinheiroDAO();
 		try {
-			gdao.atualizar(g);
-			//fdao.inserir(f);
+			//gdao.atualizar(g);
+			fdao.atualizar(ff);
 		} catch (Exception e) {
 			//System.out.println("Erro ao inserir!");
 			e.printStackTrace();
