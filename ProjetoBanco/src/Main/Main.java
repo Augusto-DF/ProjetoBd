@@ -23,8 +23,12 @@ public class Main {
 		ItensEstoque ie = new ItensEstoque(es, "Fanta Laranja", 200);
 		ItemEstoqueDAO iedao = new ItemEstoqueDAO();
 		
+		Pedido pd = new Pedido(1, c, "Corpo");
+		PedidoDAO pddao = new PedidoDAO();
+	
 		try {
-			iedao.atualizar(ie);
+			//pddao.atualizar(pd);
+			//iedao.atualizar(ie);
 			//esdao.atualizar(es);
 			//cdao.atualizar(c);
 			//gdao.inserir(gg);

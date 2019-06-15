@@ -1,7 +1,7 @@
 package Entidades;
 
 public class Pedido {
-	private Pedido idPedido;
+	private int idPedido;
 	private Cliente cliente;
 	private String formaPagamento;
 	
@@ -9,7 +9,7 @@ public class Pedido {
 		super();
 	}
 	
-	public Pedido(Pedido idPedido, Cliente cliente, String formaPagamento) {
+	public Pedido(int idPedido, Cliente cliente, String formaPagamento) {
 		super();
 		this.idPedido = idPedido;
 		this.cliente = cliente;
@@ -17,10 +17,10 @@ public class Pedido {
 	}
 
 	public int getIdPedido() {
-		return idPedido.getIdPedido();
+		return idPedido;
 	}
 
-	public void setIdPedido(Pedido idPedido) {
+	public void setIdPedido(int idPedido) {
 		this.idPedido = idPedido;
 	}
 
