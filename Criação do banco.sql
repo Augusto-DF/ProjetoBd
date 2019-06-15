@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `restaurante`.`Itens_do_Pedido` (
   `preparado` TINYINT(1) NOT NULL,
   `entregue` TINYINT(1) NOT NULL,
   #mudar para cpf do garçom
-  `idgarcom_resp` INT NOT NULL,
+  `cpfgarcom_resp` VARCHAR(12) NOT NULL,
   `detalhes` VARCHAR(45) NULL,
   `id_estoque` INT NOT NULL,
   PRIMARY KEY (`IdPedido`),
@@ -172,9 +172,14 @@ CREATE TABLE IF NOT EXISTS `restaurante`.`Itens_do_Pedido` (
     REFERENCES `restaurante`.`Pedido` (`idPedido`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `id_estoque`
+  CONSTRAINT `id_estoque11`
     FOREIGN KEY (id_estoque)
     REFERENCES `restaurante`.`Estoque` (idEstoque)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+     CONSTRAINT `cpfgarcom`
+    FOREIGN KEY (cpfgarcom_resp)
+    REFERENCES `restaurante`.`garçom` (cpf)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

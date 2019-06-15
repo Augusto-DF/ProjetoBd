@@ -59,6 +59,10 @@ public class ItemEstoqueDAO {
 		ps.setInt(3, ie.getEstoque());
 		ps.executeUpdate();	
 	}
+	
+	public void buscar() {
+		
+	}
 }
 
 

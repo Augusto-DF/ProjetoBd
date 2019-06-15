@@ -14,7 +14,7 @@ public class Main {
 		Garcom f = new Garcom(g,"Oswald Cobblepot2", "15628479310", 19900915, "Pinguins");
 		GarcomDAO fdao = new GarcomDAO();
 		
-		Cliente c = new Cliente("Jorjin2", "79461328505", 19950205, "Treloso");
+		Cliente c = new Cliente("Jorjin2", "794613285305", 19950205, "Treloso");
 		ClienteDAO cdao= new ClienteDAO();
 		
 		Estoque es = new Estoque(123456789, gg);
@@ -30,7 +30,14 @@ public class Main {
 		ItensPedidoDAO ipdao = new ItensPedidoDAO();
 		
 		try {
+			gdao.inserir(g);
+			gdao.inserir(gg);
+			fdao.inserir(f);
+			esdao.inserir(es);
+			cdao.inserir(c);
+			pddao.inserir(pd);
 			ipdao.inserir(ip);
+			System.out.println("INSERI!");
 			//pddao.atualizar(pd);
 			//iedao.atualizar(ie);
 			//esdao.atualizar(es);

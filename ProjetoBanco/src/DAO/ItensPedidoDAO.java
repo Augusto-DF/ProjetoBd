@@ -20,7 +20,7 @@ private Connection conn;
 		if(ip==null)
 			throw new Exception("o valor passado nao pode ser nulo");
 		String SQL = "INSERT INTO itens_do_pedido "
-				+ "(idPedido, item, valor, preparado, entregue, idgarcom_resp, id_estoque)"
+				+ "(idPedido, item, valor, preparado, entregue, cpfgarcom_resp, id_estoque)"
 				+ "values (?, ?, ?, ?, ?, ?, ?)";
 		conn = this.conn;
 		
