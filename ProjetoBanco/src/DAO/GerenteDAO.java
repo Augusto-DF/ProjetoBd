@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
-import Entidades.Cliente;
 import Entidades.Gerente;
 
 public class GerenteDAO {
@@ -90,5 +89,30 @@ public List<Gerente> listar(){
 		}
 		
 		return gerentes;
+	}
+
+	public Gerente buscarCPF(String resposta) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Gerente g = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT gerente.cpf, nome, datanasc, senha FROM gerente, pessoa WHERE gerente.cpf =?;");
+			ps.setString(1, resposta);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				g = new Gerente();
+				g.setCpf(rs.getString(1));
+				g.setNome(rs.getString(2));
+				g.setDataNasc(rs.getString(3));
+				g.setSenha(rs.getString(4));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Não foi possível encontrar!");
+		}
+		
+		return g;
 	}
 }

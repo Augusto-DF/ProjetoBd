@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
-import Entidades.ItensEstoque;
 import Entidades.ItensPedido;
 
 public class ItensPedidoDAO {

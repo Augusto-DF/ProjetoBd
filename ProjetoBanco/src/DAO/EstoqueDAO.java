@@ -9,7 +9,6 @@ import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
 import Entidades.Estoque;
-import Entidades.Garcom;
 
 public class EstoqueDAO {
 	private Connection conn;

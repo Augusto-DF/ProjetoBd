@@ -9,7 +9,6 @@ import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
 import Entidades.Cliente;
-import Entidades.Funcionario;
 
 public class ClienteDAO {
 	private Connection conn;
@@ -92,7 +91,31 @@ public class ClienteDAO {
 		
 		return clientes;
 	}
-	
+
+	public Cliente buscarCPF(String resposta) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Cliente c = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT cliente.cpf, nome, datanasc, senha FROM cliente, pessoa WHERE cliente.cpf =?;");
+			ps.setString(1, resposta);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				c = new Cliente();
+				c.setCpf(rs.getString(1));
+				c.setNome(rs.getString(2));
+				c.setDataNasc(rs.getString(3));
+				c.setSenha(rs.getString(4));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Não foi possível encontrar!");
+		}
+		
+		return c;
+	}
 }
 
 

@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
-import Entidades.Cliente;
 import Entidades.Funcionario;
-import Entidades.Pessoa;
 
 public class FuncionarioDAO {
 	private Connection conn;

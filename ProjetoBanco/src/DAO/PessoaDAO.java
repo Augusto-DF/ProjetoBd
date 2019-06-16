@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Entidades.Garcom;
 import Entidades.Pessoa;
 
 import ConnectionFactory.FabricaDeConexao;
@@ -95,6 +94,30 @@ public List<Pessoa> listar(){
 		}
 		
 		return pessoas;
-	}	
+	}
 
-} 
+	public Pessoa buscarCPF(String resposta) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Pessoa p = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT * FROM pessoa WHERE cpf = ?;");
+			ps.setString(1, resposta);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				p = new Pessoa();
+				p.setCpf(rs.getString(1));
+				p.setNome(rs.getString(2));
+				p.setDataNasc(rs.getString(3));
+				p.setSenha(rs.getString(4));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Não foi possível encontrar!");
+		}
+		
+		return p;
+	}
+}	

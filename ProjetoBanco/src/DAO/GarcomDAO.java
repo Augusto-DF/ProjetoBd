@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
-import Entidades.Cozinheiro;
 import Entidades.Garcom;
 
 public class GarcomDAO {
@@ -64,7 +63,7 @@ public class GarcomDAO {
 		sd.atualizar(g);
 	}
 	
-public List<Garcom> listar(){
+	public List<Garcom> listar(){
 		
 		List<Garcom> garcons = new ArrayList<>();
 		PreparedStatement ps = null;
@@ -92,7 +91,33 @@ public List<Garcom> listar(){
 		}
 		
 		return garcons;
-	}	
+	}
+	
+	public Garcom buscarCPF(String resposta) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Garcom g = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT garçom.cpf, nome, datanasc, senha, cpf_supervisor FROM garçom, pessoa, supervisionado WHERE garçom.cpf =?;");
+			ps.setString(1, resposta);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				g = new Garcom();
+				g.setCpf(rs.getString(1));
+				g.setNome(rs.getString(2));
+				g.setDataNasc(rs.getString(3));
+				g.setSenha(rs.getString(4));
+				g.setCpfGerente(rs.getString(5));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Não foi possível encontrar!");
+		}
+		
+		return g;
+	}
 }
 
 

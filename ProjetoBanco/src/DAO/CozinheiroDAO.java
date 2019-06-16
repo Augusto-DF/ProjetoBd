@@ -9,8 +9,6 @@ import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
 import Entidades.Cozinheiro;
-import Entidades.Funcionario;
-import Entidades.Supervisionado;
 
 public class CozinheiroDAO {
 	private Connection conn;
@@ -65,7 +63,7 @@ public class CozinheiroDAO {
 		sd.atualizar(c);
 	}
 	
-public List<Cozinheiro> listar(){
+	public List<Cozinheiro> listar(){
 		
 		List<Cozinheiro> cozinheiros = new ArrayList<>();
 		PreparedStatement ps = null;
@@ -94,6 +92,32 @@ public List<Cozinheiro> listar(){
 		
 		return cozinheiros;
 	}	
+	
+	public Cozinheiro buscarCPF(String resposta) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Cozinheiro c = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT cozinheiro.cpf, nome, datanasc, senha, cpf_supervisor FROM cozinheiro, pessoa, supervisionado WHERE cozinheiro.cpf =?;");
+			ps.setString(1, resposta);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				c = new Cozinheiro();
+				c.setCpf(rs.getString(1));
+				c.setNome(rs.getString(2));
+				c.setDataNasc(rs.getString(3));
+				c.setSenha(rs.getString(4));
+				c.setCpfGerente(rs.getString(5));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Não foi possível encontrar!");
+		}
+		
+		return c;
+	}
 }
 
 
