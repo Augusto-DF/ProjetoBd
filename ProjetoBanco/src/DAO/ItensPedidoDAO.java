@@ -2,6 +2,10 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
 import Entidades.ItensEstoque;
@@ -72,6 +76,38 @@ private Connection conn;
 		ps.setInt(6, ip.getEstoque());
 		ps.setInt(7, ip.getPedido());
 		ps.executeUpdate();	
+	}
+	
+public List<ItensPedido> listar(){
+		
+		List<ItensPedido> itensPedido = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT * FROM itens_do_pedido;");
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				ItensPedido ip = new ItensPedido();
+				ip.setItem(rs.getString(1));
+				ip.setPedido(rs.getInt(2));
+				ip.setValor(rs.getDouble(3));
+				ip.setPreparado(rs.getBoolean(4));
+				ip.setEntregue(rs.getBoolean(5));
+				ip.setResponsavel(rs.getString(6));
+				ip.setDetalhes(rs.getString(7));
+				ip.setEstoque(rs.getInt(8));
+				
+				itensPedido.add(ip);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Não foi possível listar!");
+		}
+		
+		return itensPedido;
 	}
 }
 

@@ -1,34 +1,38 @@
 package Entidades;
 
 public class ItensPedido {
-	private Pedido pedido;
+	private int idPedido;
 	private String item;
 	private double valor;
 	private boolean preparado;
 	private boolean entregue;
-	private Garcom responsavel;
+	private String cpfresponsavel;
 	private String detalhes;
-	private Estoque estoque;
+	private int idEstoque;
 	
-	public ItensPedido(Pedido pedido, String item, double valor, 
-			Garcom responsavel, String detalhes, Estoque estoque) {
+	public ItensPedido(int idPedido, String item, double valor, 
+			String cpfresponsavel, String detalhes, int idEstoque) {
 		super();
-		this.pedido = pedido;
+		this.idPedido = idPedido;
 		this.item = item;
 		this.valor = valor;
 		this.preparado = false;
 		this.entregue = false;
-		this.responsavel = responsavel;
+		this.cpfresponsavel = cpfresponsavel;
 		this.detalhes = detalhes;
-		this.estoque = estoque;
+		this.idEstoque = idEstoque;
+	}
+
+	public ItensPedido() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getPedido() {
-		return pedido.getIdPedido();
+		return idPedido;
 	}
 
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	public void setPedido(int idPedido) {
+		this.idPedido = idPedido;
 	}
 
 	public String getItem() {
@@ -64,11 +68,11 @@ public class ItensPedido {
 	}
 
 	public String getResponsavel() {
-		return responsavel.getCpf();
+		return cpfresponsavel;
 	}
 
-	public void setResponsavel(Garcom responsavel) {
-		this.responsavel = responsavel;
+	public void setResponsavel(String cpfresponsavel) {
+		this.cpfresponsavel = cpfresponsavel;
 	}
 
 	public String getDetalhes() {
@@ -80,10 +84,10 @@ public class ItensPedido {
 	}
 
 	public int getEstoque() {
-		return estoque.getIdEstoque();
+		return idEstoque;
 	}
 
-	public void setEstoque(Estoque estoque) {
-		this.estoque = estoque;
+	public void setEstoque(int idEstoque) {
+		this.idEstoque = idEstoque;
 	}	
 }

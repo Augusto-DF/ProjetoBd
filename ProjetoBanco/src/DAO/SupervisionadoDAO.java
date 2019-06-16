@@ -2,8 +2,13 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
+import Entidades.Cliente;
 import Entidades.Supervisionado;
 
 public class SupervisionadoDAO {
@@ -62,5 +67,35 @@ public class SupervisionadoDAO {
 		ps.executeUpdate();	
 		
 		fd.atualizar(s);
+	}
+	
+	public List<Supervisionado> listar(){
+		
+		List<Supervisionado> supervisionados = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT pessoa.cpf, nome, datanasc, senha, cpf_supervisor FROM supervisionado, pessoa WHERE pessoa.cpf = supervisionado.cpf;");
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Supervisionado s = new Supervisionado();
+				
+				s.setCpf(rs.getString(1));
+				s.setNome(rs.getString(2));
+				s.setDataNasc(rs.getString(3));
+				s.setSenha(rs.getString(4));
+				s.setCpfGerente(rs.getString(5));
+				
+				supervisionados.add(s);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Não foi possível listar!");
+		}
+		
+		return supervisionados;
 	}
 }

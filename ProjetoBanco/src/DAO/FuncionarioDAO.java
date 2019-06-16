@@ -2,7 +2,13 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import ConnectionFactory.FabricaDeConexao;
+import Entidades.Cliente;
 import Entidades.Funcionario;
 import Entidades.Pessoa;
 
@@ -66,4 +72,33 @@ public class FuncionarioDAO {
 		
 		pd.atualizar(f);
 	}
+
+public List<Funcionario> listar(){
+		
+		List<Funcionario> funcionarios = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT pessoa.cpf, nome, datanasc, senha FROM funcionario, pessoa WHERE pessoa.cpf = funcionario.cpf;");
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Funcionario f = new Funcionario();
+
+				f.setCpf(rs.getString(1));
+				f.setNome(rs.getString(2));
+				f.setDataNasc(rs.getString(3));
+				f.setSenha(rs.getString(4));
+				
+				funcionarios.add(f);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Não foi possível listar!");
+		}
+		
+		return funcionarios;
+	}	
 }

@@ -2,15 +2,15 @@ package Entidades;
 
 public class Estoque {
 	private int idEstoque;
-	private Gerente gerente;
+	private String cpfgerente;
 	
 	public Estoque() {
 		
 	}
 	
-	public Estoque(int idEstoque, Gerente gerente) {
+	public Estoque(int idEstoque, String cpfgerente) {
 		this.idEstoque = idEstoque;
-		this.gerente = gerente;
+		this.cpfgerente = cpfgerente;
 	}
 	
 	public int getIdEstoque() {
@@ -22,10 +22,10 @@ public class Estoque {
 	}
 	
 	public String getGerente() {
-		return gerente.getCpf();
+		return cpfgerente;
 	}
 	
-	public void setGerente(Gerente gerente) {
-		this.gerente = gerente;
+	public void setGerente(String cpfgerente) {
+		this.cpfgerente = cpfgerente;
 	}
 }

@@ -2,9 +2,14 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
 import Entidades.Cozinheiro;
+import Entidades.Funcionario;
 import Entidades.Supervisionado;
 
 public class CozinheiroDAO {
@@ -59,6 +64,36 @@ public class CozinheiroDAO {
 		
 		sd.atualizar(c);
 	}
+	
+public List<Cozinheiro> listar(){
+		
+		List<Cozinheiro> cozinheiros = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT pessoa.cpf, nome, datanasc, senha, cpf_supervisor FROM cozinheiro, supervisionado, pessoa WHERE pessoa.cpf = cozinheiro.cpf AND cozinheiro.cpf = supervisionado.cpf;");
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Cozinheiro c = new Cozinheiro();
+
+				c.setCpf(rs.getString(1));
+				c.setNome(rs.getString(2));
+				c.setDataNasc(rs.getString(3));
+				c.setSenha(rs.getString(4));
+				c.setCpfGerente(rs.getString(5));
+				
+				cozinheiros.add(c);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Não foi possível listar!");
+		}
+		
+		return cozinheiros;
+	}	
 }
 
 

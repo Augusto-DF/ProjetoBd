@@ -2,6 +2,12 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import Entidades.Garcom;
 import Entidades.Pessoa;
 
 import ConnectionFactory.FabricaDeConexao;
@@ -24,7 +30,7 @@ public class PessoaDAO {
 		ps = conn.prepareStatement(SQL);
 		ps.setString(1, p.getCpf());
 		ps.setString(2, p.getNome());
-		ps.setInt(3, p.getDataNasc());
+		ps.setString(3, p.getDataNasc());
 		ps.setString(4, p.getSenha());
 		ps.executeUpdate();	
 	}
@@ -56,9 +62,39 @@ public class PessoaDAO {
 		conn = this.conn;
 		ps = conn.prepareStatement(SQL);		
 		ps.setString(1, p.getNome());
-		ps.setInt(2, p.getDataNasc());
+		ps.setString(2, p.getDataNasc());
 		ps.setString(3, p.getSenha());
 		ps.setString(4, p.getCpf());
 		ps.executeUpdate();	
 	}
+	
+public List<Pessoa> listar(){
+		
+		List<Pessoa> pessoas = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT * FROM pessoa;");
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Pessoa p = new Pessoa();
+
+				p.setCpf(rs.getString(1));
+				p.setNome(rs.getString(2));
+				p.setDataNasc(rs.getString(3));
+				p.setSenha(rs.getString(4));
+				
+				pessoas.add(p);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Não foi possível listar!");
+		}
+		
+		return pessoas;
+	}	
+
 } 

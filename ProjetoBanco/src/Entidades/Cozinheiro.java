@@ -2,11 +2,15 @@ package Entidades;
 
 public class Cozinheiro extends Supervisionado{
 
-	public Cozinheiro(Gerente _gerente, String nome, String cpf, int dataNasc, String senha) {
-		super(_gerente, nome, cpf, dataNasc, senha);
+	public Cozinheiro(Gerente gerente, String nome, String cpf, String dataNasc, String senha) {
+		super(gerente, nome, cpf, dataNasc, senha);
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Cozinheiro() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNome() {
 		return super.getNome();
 	}
@@ -23,11 +27,11 @@ public class Cozinheiro extends Supervisionado{
 		super.setCpf(cpf);
 	}
 
-	public int getDatanasc() {
+	public String getDatanasc() {
 		return super.getDataNasc();
 	}
 
-	public void setDataNasc(int datanasc) {
+	public void setDataNasc(String datanasc) {
 		super.setDataNasc(datanasc);
 	}
 

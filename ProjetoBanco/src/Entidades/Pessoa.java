@@ -4,14 +4,14 @@ public class Pessoa {
 	
 	private String nome;
 	private String cpf;
-	private int dataNasc;
+	private String dataNasc;
 	private String senha;
 	
 	public Pessoa() {
 		super();
 	}
 
-	public Pessoa(String nome, String cpf, int dataNasc, String senha) {
+	public Pessoa(String nome, String cpf, String dataNasc, String senha) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
@@ -35,11 +35,11 @@ public class Pessoa {
 		this.cpf = cpf;
 	}
 
-	public int getDataNasc() {
+	public String getDataNasc() {
 		return dataNasc;
 	}
 
-	public void setDataNasc(int dataNasc) {
+	public void setDataNasc(String dataNasc) {
 		this.dataNasc = dataNasc;
 	}
 

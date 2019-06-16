@@ -2,8 +2,13 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
+import Entidades.Cliente;
 import Entidades.Estoque;
 import Entidades.Pedido;
 
@@ -59,6 +64,34 @@ private Connection conn;
 		ps.setString(2, p.getFormaPagamento());
 		ps.setInt(3, p.getIdPedido());
 		ps.executeUpdate();	
+	}
+	
+public List<Pedido> listar(){
+		
+		List<Pedido> pedidos = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT * FROM pedido;");
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Pedido p = new Pedido();
+				
+				p.setIdPedido(rs.getInt(1));
+				p.setCliente(rs.getString(2));
+				p.setFormaPagamento(rs.getString(3));
+				
+				pedidos.add(p);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Não foi possível listar!");
+		}
+		
+		return pedidos;
 	}
 }
 

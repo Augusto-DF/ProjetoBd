@@ -2,8 +2,13 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
+import Entidades.Cliente;
 import Entidades.Gerente;
 
 public class GerenteDAO {
@@ -56,5 +61,34 @@ public class GerenteDAO {
 		conn = this.conn;
 		
 		fd.atualizar(g);
+	}
+	
+public List<Gerente> listar(){
+		
+		List<Gerente> gerentes = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT pessoa.cpf, nome, datanasc, senha FROM gerente, pessoa WHERE pessoa.cpf = gerente.cpf;");
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Gerente g = new Gerente();
+				
+				g.setCpf(rs.getString(1));
+				g.setNome(rs.getString(2));
+				g.setDataNasc(rs.getString(3));
+				g.setSenha(rs.getString(4));
+				
+				gerentes.add(g);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Não foi possível listar!");
+		}
+		
+		return gerentes;
 	}
 }

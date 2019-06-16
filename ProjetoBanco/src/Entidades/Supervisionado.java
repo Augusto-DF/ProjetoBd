@@ -8,7 +8,7 @@ public class Supervisionado extends Funcionario {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Supervisionado(Gerente _gerente, String nome, String cpf, int dataNasc, String senha) {
+	public Supervisionado(Gerente _gerente, String nome, String cpf, String dataNasc, String senha) {
 		super(nome, cpf, dataNasc, senha);
 		this.cpfGerente = _gerente.getCpf();
 	}
@@ -29,11 +29,11 @@ public class Supervisionado extends Funcionario {
 		super.setCpf(cpf);
 	}
 
-	public int getDatanasc() {
+	public String getDatanasc() {
 		return super.getDataNasc();
 	}
 
-	public void setDataNasc(int datanasc) {
+	public void setDataNasc(String datanasc) {
 		super.setDataNasc(datanasc);
 	}
 

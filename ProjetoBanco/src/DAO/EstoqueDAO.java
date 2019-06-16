@@ -2,9 +2,14 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
 import Entidades.Estoque;
+import Entidades.Garcom;
 
 public class EstoqueDAO {
 	private Connection conn;
@@ -56,6 +61,33 @@ public class EstoqueDAO {
 		ps.setString(1, etq.getGerente());
 		ps.setInt(2, etq.getIdEstoque());
 		ps.executeUpdate();	
+	}
+	
+public List<Estoque> listar(){
+		
+		List<Estoque> estoques = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = this.conn.prepareStatement("SELECT * FROM estoque;");
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Estoque g = new Estoque();
+				
+				g.setIdEstoque(rs.getInt(1));
+				g.setGerente(rs.getString(2));
+				
+				estoques.add(g);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Não foi possível listar!");
+		}
+		
+		return estoques;
 	}
 }
 

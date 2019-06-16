@@ -22,7 +22,7 @@ USE `restaurante` ;
 CREATE TABLE IF NOT EXISTS `restaurante`.`Pessoa` (
   `cpf` VARCHAR(12) NOT NULL,
   `nome` VARCHAR(50) NOT NULL,
-  `datanasc` DATE NOT NULL,
+  `datanasc` VARCHAR(10) NOT NULL,
   `senha` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`cpf`))
 ENGINE = InnoDB;

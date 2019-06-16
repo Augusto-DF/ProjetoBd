@@ -7,7 +7,7 @@ public class Funcionario extends Pessoa{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Funcionario(String nome, String cpf, int dataNasc, String senha) {
+	public Funcionario(String nome, String cpf, String dataNasc, String senha) {
 		super(nome, cpf, dataNasc, senha);
 		// TODO Auto-generated constructor stub
 	}
@@ -28,11 +28,11 @@ public class Funcionario extends Pessoa{
 		super.setCpf(cpf);
 	}
 
-	public int getDatanasc() {
+	public String getDatanasc() {
 		return super.getDataNasc();
 	}
 
-	public void setDataNasc(int datanasc) {
+	public void setDataNasc(String datanasc) {
 		super.setDataNasc(datanasc);
 	}
 
