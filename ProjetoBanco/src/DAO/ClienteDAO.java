@@ -70,7 +70,7 @@ public class ClienteDAO {
 		ResultSet rs = null;
 		
 		try {
-			ps = this.conn.prepareStatement("SELECT pessoa.cpf, nome, datanasc, senha FROM cliente, pessoa WHERE pessoa.cpf = cliente.cpf;");
+			ps = this.conn.prepareStatement("SELECT pessoa.cpf, nome, datanasc, senha FROM cliente, pessoa WHERE pessoa.cpf = cliente.cpf");
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -96,9 +96,10 @@ public class ClienteDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Cliente c = null;
+		String SQL = "SELECT pessoa.cpf, nome, datanasc, senha FROM cliente, pessoa WHERE pessoa.cpf =(?)";
 		
 		try {
-			ps = this.conn.prepareStatement("SELECT cliente.cpf, nome, datanasc, senha FROM cliente, pessoa WHERE cliente.cpf =?;");
+			ps = this.conn.prepareStatement(SQL);
 			ps.setString(1, resposta);
 			rs = ps.executeQuery();
 			if(rs.next()) {

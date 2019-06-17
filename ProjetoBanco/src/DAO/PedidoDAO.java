@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
+import Entidades.Cliente;
 import Entidades.Pedido;
 
 public class PedidoDAO {
@@ -22,13 +23,14 @@ private Connection conn;
 		Connection conn = null;
 		if(p==null)
 			throw new Exception("o valor passado nao pode ser nulo");
-		String SQL = "INSERT INTO Pedido (idPedido, cpf_cliente, forma_pagamento)" + "values (?, ?, ?)";
+		String SQL = "INSERT INTO Pedido" + /*(idPedido,*/ "(cpf_cliente, forma_pagamento, fecharPedido)" + "values (?, ?, ?)";
 		conn = this.conn;
 		
 		ps = conn.prepareStatement(SQL);
-		ps.setInt(1, p.getIdPedido());
-		ps.setString(2, p.getCliente());
-		ps.setString(3, p.getFormaPagamento());
+		//ps.setInt(1, p.getIdPedido());
+		ps.setString(1, p.getCliente());
+		ps.setString(2, p.getFormaPagamento());
+		ps.setBoolean(3, p.isFecharPedido());
 		ps.executeUpdate();	
 	}
 	
@@ -54,17 +56,18 @@ private Connection conn;
 			throw new Exception("o valor passado nao pode ser nulo");
 		}
 		
-		String SQL = "UPDATE Pedido SET cpf_cliente=(?), forma_pagamento=(?) WHERE idPedido=(?)";
+		String SQL = "UPDATE Pedido SET cpf_cliente=(?), forma_pagamento=(?), fecharPedido=(?) WHERE idPedido=(?)";
 		conn = this.conn;
 		
 		ps = conn.prepareStatement(SQL);
 		ps.setString(1, p.getCliente());
 		ps.setString(2, p.getFormaPagamento());
-		ps.setInt(3, p.getIdPedido());
+		ps.setBoolean(3, p.isFecharPedido());
+		ps.setInt(4, p.getIdPedido());
 		ps.executeUpdate();	
 	}
 	
-public List<Pedido> listar(){
+	public List<Pedido> listar(){
 		
 		List<Pedido> pedidos = new ArrayList<>();
 		PreparedStatement ps = null;
@@ -91,7 +94,34 @@ public List<Pedido> listar(){
 		
 		return pedidos;
 	}
+	
+	public Pedido buscarPedido(String cpfCliente) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Pedido pd = null;
+		String SQL = "SELECT idPedido, cpf_cliente,"
+				+ "forma_pagamento FROM pedido  WHERE cpf_cliente =(?) and fecharPedido=0";
+		
+		try {
+			ps = this.conn.prepareStatement(SQL);
+			ps.setString(1, cpfCliente);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				pd = new Pedido();
+				pd.setIdPedido(rs.getInt(1));
+				pd.setCliente(rs.getString(2)); 
+				pd.setFormaPagamento(rs.getString(3));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Não foi possível encontrar!");
+			return null;
+		}
+		return pd;			
+	}
+		
 }
+
 
 
 

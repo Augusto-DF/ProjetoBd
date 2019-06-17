@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
+import Entidades.Cliente;
 import Entidades.ItensEstoque;
 
 public class ItemEstoqueDAO {
@@ -22,13 +23,14 @@ public class ItemEstoqueDAO {
 		Connection conn = null;
 		if(ie==null)
 			throw new Exception("o valor passado nao pode ser nulo");
-		String SQL = "INSERT INTO itens_do_estoque (id_estoque, Item, quantidade)" + "values (?, ?, ?)";
+		String SQL = "INSERT INTO itens_do_estoque (id_estoque, Item, quantidade, valor)" + "values (?, ?, ?, ?)";
 		conn = this.conn;
 		
 		ps = conn.prepareStatement(SQL);
 		ps.setInt(1, ie.getEstoque());
 		ps.setString(2, ie.getProduto());
 		ps.setInt(3, ie.getQuantidade());
+		ps.setDouble(4, ie.getValor());
 		ps.executeUpdate();	
 	}
 	
@@ -54,19 +56,20 @@ public class ItemEstoqueDAO {
 			throw new Exception("o valor passado nao pode ser nulo");
 		}
 		
-		String SQL = "UPDATE itens_do_estoque SET Item=(?), quantidade=(?) WHERE id_estoque=(?)";
+		String SQL = "UPDATE itens_do_estoque SET Item=(?), quantidade=(?), valor=(?) WHERE id_estoque=(?)";
 		conn = this.conn;
 		
 		ps = conn.prepareStatement(SQL);
 		ps.setString(1, ie.getProduto());
 		ps.setInt(2, ie.getQuantidade());
-		ps.setInt(3, ie.getEstoque());
+		ps.setInt(4, ie.getEstoque());
+		ps.setDouble(3, ie.getValor());
 		ps.executeUpdate();	
 	}
 	
-public List<ItensEstoque> listar(){
+	public ArrayList<ItensEstoque> listar(){
 		
-		List<ItensEstoque> itensEstoque = new ArrayList<>();
+		ArrayList<ItensEstoque> itensEstoque = new ArrayList<>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
@@ -80,7 +83,8 @@ public List<ItensEstoque> listar(){
 				
 				ie.setEstoque(rs.getInt(1));
 				ie.setProduto(rs.getString(2));
-				ie.setQuantidade(rs.getInt(3));				
+				ie.setQuantidade(rs.getInt(3));	
+				ie.setValor(rs.getDouble(4));
 				
 				itensEstoque.add(ie);
 			}
@@ -92,7 +96,25 @@ public List<ItensEstoque> listar(){
 		return itensEstoque;
 	}
 	
-	
+	public boolean verificaItem(String ni) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ItensEstoque ie = null;
+		String SQL = "SELECT * FROM itens_do_estoque WHERE item =(?) "
+				+ "and quantidade > 0";
+		
+		try {
+			ps = this.conn.prepareStatement(SQL);
+			ps.setString(1, ni);
+			rs = ps.executeQuery();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Não foi possível encontrar!");
+			return false;
+		}
+		return true;
+	}
 	
 }
 

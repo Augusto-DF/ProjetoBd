@@ -10,6 +10,7 @@ import Entidades.Cliente;
 import Entidades.Cozinheiro;
 import Entidades.Garcom;
 import Entidades.Gerente;
+import Operacoes.OperacoesCliente;
 
 public class Menu {
 	
@@ -34,7 +35,7 @@ public class Menu {
 		return resposta;
 	}
 	
-	public void exibirMenu(int tipo) {
+	public void exibirMenu(int tipo) throws Exception {
 		switch (tipo) {
 		case 1:
 			exibirMenuCliente();
@@ -49,34 +50,36 @@ public class Menu {
 			exibirMenuCozinheiro();
 			break;
 		default:
-			System.out.println("Por favor, insira um valor válido!");
-			int tipoUsuario = exibirEscolhadeUsuario();
-			if(tipoUsuario == 0) {
+			if(tipo == 0) {
 				System.out.println("Bye! :D");
 			} else {
-				exibirMenu(tipoUsuario);
+				System.out.println("Por favor, insira um valor válido!");
+				exibirMenu(exibirEscolhadeUsuario());
 			}
 			break;
 		}
 	}
 	
-	public void exibirMenuCliente() {
+	public void exibirMenuCliente() throws Exception {
 		System.out.println("-----------------------------------------");
 		System.out.println("Bem-Vindo, querido cliente!");
 		System.out.println("Informe seu cpf (Somente Números)");
 		System.out.print("Resposta: ");
-		entrada.nextLine();
-		String resposta = entrada.nextLine();
+		this.entrada.nextLine();
+		String resposta = this.entrada.nextLine();
 		ClienteDAO cdao = new ClienteDAO();
 		Cliente c = cdao.buscarCPF(resposta);
-		System.out.println(c.getSenha());
+		System.out.println(c.getNome());
 		if(c != null) {
 			System.out.println("Informe sua senha!");
 			System.out.print("Resposta: ");
 			String senha = entrada.nextLine();
-			if(senha.equals(c.getSenha()))
+			if(senha.equals(c.getSenha())) {
 				System.out.println("Logado! :D");
-			else {
+				//Lista de operações do cliente:
+				OperacoesCliente oc = new OperacoesCliente(c);
+				oc.acoes(oc.listaOperacoes());
+			} else {
 				System.out.println("Senha incorreta! Inicie novamente!");
 			}
 		}
@@ -150,6 +153,4 @@ public class Menu {
 			System.out.println("CPF não encontrado! Inicie novamente!");
 		}		
 	}
-	
-
 }

@@ -4,9 +4,17 @@ public class Pedido {
 	private int idPedido;
 	private String cpfcliente;
 	private String formaPagamento;
+	private boolean fecharPedido;
 	
 	public Pedido() {
 		super();
+	}
+	
+	public Pedido(String cpfcliente, String formaPagamento) {
+		super();
+		this.cpfcliente = cpfcliente;
+		this.formaPagamento = formaPagamento;
+		this.fecharPedido = false;
 	}
 	
 	public Pedido(int idPedido, String cpfcliente, String formaPagamento) {
@@ -14,6 +22,7 @@ public class Pedido {
 		this.idPedido = idPedido;
 		this.cpfcliente = cpfcliente;
 		this.formaPagamento = formaPagamento;
+		this.fecharPedido = false;
 	}
 
 	public int getIdPedido() {
@@ -39,6 +48,16 @@ public class Pedido {
 	public void setFormaPagamento(String formaPagamento) {
 		this.formaPagamento = formaPagamento;
 	}
+
+	public boolean isFecharPedido() {
+		return fecharPedido;
+	}
+
+	public void setFecharPedido(boolean fecharPedido) {
+		this.fecharPedido = fecharPedido;
+	}
+	
+	
 	
 	
 }

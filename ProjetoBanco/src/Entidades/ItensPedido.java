@@ -3,24 +3,25 @@ package Entidades;
 public class ItensPedido {
 	private int idPedido;
 	private String item;
-	private double valor;
 	private boolean preparado;
 	private boolean entregue;
 	private String cpfresponsavel;
 	private String detalhes;
 	private int idEstoque;
+	private int quantidade;
 	
-	public ItensPedido(int idPedido, String item, double valor, 
-			String cpfresponsavel, String detalhes, int idEstoque) {
+	public ItensPedido(int idPedido, String item,
+			String detalhes, int idEstoque,
+			int quantidade) {
 		super();
 		this.idPedido = idPedido;
 		this.item = item;
-		this.valor = valor;
 		this.preparado = false;
 		this.entregue = false;
-		this.cpfresponsavel = cpfresponsavel;
+		this.cpfresponsavel = "";
 		this.detalhes = detalhes;
 		this.idEstoque = idEstoque;
+		this.quantidade = quantidade;
 	}
 
 	public ItensPedido() {
@@ -42,15 +43,7 @@ public class ItensPedido {
 	public void setItem(String item) {
 		this.item = item;
 	}
-
-	public double getValor() {
-		return valor;
-	}
-
-	public void setValor(double valor) {
-		this.valor = valor;
-	}
-
+	
 	public boolean isPreparado() {
 		return preparado;
 	}
@@ -89,5 +82,13 @@ public class ItensPedido {
 
 	public void setEstoque(int idEstoque) {
 		this.idEstoque = idEstoque;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}	
 }
