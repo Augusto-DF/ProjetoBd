@@ -1,6 +1,7 @@
 package Entidades;
 
 public class ItensPedido {
+	private int idItem;
 	private int idPedido;
 	private String item;
 	private boolean preparado;
@@ -10,7 +11,7 @@ public class ItensPedido {
 	private int idEstoque;
 	private int quantidade;
 	
-	public ItensPedido(int idPedido, String item,
+	public ItensPedido(int idPedido, String item, String cpfresponsavel,
 			String detalhes, int idEstoque,
 			int quantidade) {
 		super();
@@ -18,7 +19,7 @@ public class ItensPedido {
 		this.item = item;
 		this.preparado = false;
 		this.entregue = false;
-		this.cpfresponsavel = "";
+		this.cpfresponsavel = cpfresponsavel;
 		this.detalhes = detalhes;
 		this.idEstoque = idEstoque;
 		this.quantidade = quantidade;
@@ -26,7 +27,7 @@ public class ItensPedido {
 
 	public ItensPedido() {
 		// TODO Auto-generated constructor stub
-	}
+	}	
 
 	public int getPedido() {
 		return idPedido;

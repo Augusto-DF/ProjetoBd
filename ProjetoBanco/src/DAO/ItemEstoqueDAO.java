@@ -9,6 +9,7 @@ import java.util.List;
 
 import ConnectionFactory.FabricaDeConexao;
 import Entidades.Cliente;
+import Entidades.Garcom;
 import Entidades.ItensEstoque;
 
 public class ItemEstoqueDAO {
@@ -69,7 +70,7 @@ public class ItemEstoqueDAO {
 	
 	public ArrayList<ItensEstoque> listar(){
 		
-		ArrayList<ItensEstoque> itensEstoque = new ArrayList<>();
+		ArrayList<ItensEstoque> itensEstoque = new ArrayList();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
@@ -116,6 +117,34 @@ public class ItemEstoqueDAO {
 		return true;
 	}
 	
+	public ItensEstoque buscaItemPorNome(String item) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ItensEstoque ie = null;
+		String SQL = "SELECT * FROM itens_do_estoque WHERE item =(?)";
+		
+		try {
+			ps = this.conn.prepareStatement(SQL);
+			ps.setString(1, item);
+			rs = ps.executeQuery();		
+			if(rs.next()) {
+				ie = new ItensEstoque();
+				ie.setEstoque(rs.getInt(1));
+				ie.setProduto(rs.getString(2));
+				ie.setQuantidade(rs.getInt(3));
+				ie.setValor(rs.getDouble(4));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Não foi possível encontrar!");
+			return null;
+		}
+		return ie;
+	}
+	
+	public void close() throws SQLException {
+		this.conn.close();
+	}
 }
 
 

@@ -119,7 +119,10 @@ private Connection conn;
 		}
 		return pd;			
 	}
-		
+	
+	public void close() throws SQLException {
+		this.conn.close();
+	}	
 }
 
 

@@ -117,6 +117,10 @@ public class ClienteDAO {
 		
 		return c;
 	}
+	
+	public void close() throws SQLException {
+		this.conn.close();
+	}
 }
 
 

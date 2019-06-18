@@ -88,6 +88,10 @@ public List<Estoque> listar(){
 		
 		return estoques;
 	}
+
+	public void close() throws SQLException {
+		this.conn.close();
+	}
 }
 
 

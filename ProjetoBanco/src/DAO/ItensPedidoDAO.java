@@ -76,9 +76,9 @@ private Connection conn;
 		ps.executeUpdate();	
 	}
 	
-public List<ItensPedido> listar(){
+public ArrayList<ItensPedido> listar(){
 		
-		List<ItensPedido> itensPedido = new ArrayList<>();
+		ArrayList<ItensPedido> itensPedido = new ArrayList<>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
@@ -105,6 +105,46 @@ public List<ItensPedido> listar(){
 		}
 		
 		return itensPedido;
+	}
+
+	public ArrayList<ItensPedido> listarPorId(int id){
+	
+	ArrayList<ItensPedido> itensPedido = new ArrayList();
+	PreparedStatement ps = null;
+	ResultSet rs = null;
+	ItensPedido ip = null;
+	
+	try {
+		ps = this.conn.prepareStatement("SELECT item, idpedido, preparado, "
+				+ "entregue, quantidade, cpfgarcom_resp, detalhes,"
+				+ "id_estoque FROM itens_do_pedido "
+				+ "WHERE IdPedido =" + id);
+		rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			
+			ip = new ItensPedido();
+			ip.setItem(rs.getString(1));
+			ip.setPedido(rs.getInt(2));
+			ip.setPreparado(rs.getBoolean(3));
+			ip.setEntregue(rs.getBoolean(4));
+			ip.setQuantidade(rs.getInt(5));
+			ip.setResponsavel(rs.getString(6));
+			ip.setDetalhes(rs.getString(7));
+			ip.setEstoque(rs.getInt(8));
+			
+			itensPedido.add(ip);
+		}
+		
+	} catch (SQLException e) {
+		System.out.println("Não foi possível listar!");
+	}
+	
+	return itensPedido;
+}
+
+	public void close() throws SQLException {
+		this.conn.close();
 	}
 }
 

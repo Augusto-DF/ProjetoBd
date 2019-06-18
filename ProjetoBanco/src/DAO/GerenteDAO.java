@@ -115,4 +115,8 @@ public List<Gerente> listar(){
 		
 		return g;
 	}
+	
+	public void close() throws SQLException {
+		this.conn.close();
+	}
 }

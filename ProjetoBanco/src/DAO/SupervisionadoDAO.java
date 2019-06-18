@@ -97,4 +97,8 @@ public class SupervisionadoDAO {
 		
 		return supervisionados;
 	}
+	
+	public void close() throws SQLException {
+		this.conn.close();
+	}
 }

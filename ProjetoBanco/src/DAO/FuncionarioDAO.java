@@ -99,4 +99,8 @@ public List<Funcionario> listar(){
 		
 		return funcionarios;
 	}	
+
+	public void close() throws SQLException {
+		this.conn.close();
+	}
 }

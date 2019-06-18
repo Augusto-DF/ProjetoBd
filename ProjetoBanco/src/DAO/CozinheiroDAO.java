@@ -118,6 +118,10 @@ public class CozinheiroDAO {
 		
 		return c;
 	}
+	
+	public void close() throws SQLException {
+		this.conn.close();
+	}
 }
 
 

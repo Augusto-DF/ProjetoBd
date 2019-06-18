@@ -1,7 +1,7 @@
 package Entidades;
 
 public class ItensEstoque {
-	private Estoque estoque;
+	private int estoque;
 	private String produto;
 	private int quantidade;
 	private double valor;
@@ -10,7 +10,7 @@ public class ItensEstoque {
 		super();
 	}
 	
-	public ItensEstoque(Estoque estoque, String produto, int quantidade, double valor) {
+	public ItensEstoque(int estoque, String produto, int quantidade, double valor) {
 		super();
 		this.estoque = estoque;
 		this.produto = produto;
@@ -19,11 +19,11 @@ public class ItensEstoque {
 	}
 
 	public int getEstoque() {
-		return estoque.getIdEstoque();
+		return estoque;
 	}
 
-	public void setEstoque(int idestoque) {
-		estoque.setIdEstoque(idestoque);
+	public void setEstoque(int estoque) {
+		this.estoque = estoque;
 	}
 	
 	/*

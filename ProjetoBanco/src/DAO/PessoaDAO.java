@@ -120,4 +120,8 @@ public List<Pessoa> listar(){
 		
 		return p;
 	}
+	
+	public void close() throws SQLException {
+		this.conn.close();
+	}
 }	

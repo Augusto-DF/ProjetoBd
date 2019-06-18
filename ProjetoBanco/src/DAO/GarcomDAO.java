@@ -63,9 +63,9 @@ public class GarcomDAO {
 		sd.atualizar(g);
 	}
 	
-	public List<Garcom> listar(){
+	public ArrayList<Garcom> listar(){
 		
-		List<Garcom> garcons = new ArrayList<>();
+		ArrayList<Garcom> garcons = new ArrayList();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
@@ -118,9 +118,43 @@ public class GarcomDAO {
 		
 		return g;
 	}
+	
+	public Garcom buscaGarcomLivre() {
+		Garcom gmenor = new Garcom();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int menor = 999;
+		int menorg = 0;
+		
+		for(int i=0; i<listar().size(); ++i) {
+			try {
+				ps = this.conn.prepareStatement("SELECT Count(cpfgarcom_resp) FROM itens_do_pedido WHERE cpfgarcom_resp="+ listar().get(i).getCpf());
+				rs = ps.executeQuery();
+				
+				if(rs.getInt("Count(cpfgarcom_resp)") < menor) {
+					menor = rs.getInt("Count(cpfgarcom_resp)");
+					menorg = i;
+				} else {
+					continue;
+				}
+			} catch (SQLException e) {
+				
+			}
+		}
+		
+		if(menor <= 0) {
+			return gmenor = listar().get(0);
+		}
+		
+		gmenor = listar().get(menorg);
+		return gmenor;
+	}
+	
+	public void close() throws SQLException {
+		this.conn.close();
+	}
 }
-
-
 
 
 
