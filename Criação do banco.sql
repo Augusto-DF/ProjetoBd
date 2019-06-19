@@ -159,6 +159,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Itens_do_Pedido`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bar`.`Itens_do_Pedido` (
+  `idItem` INT NOT NULL AUTO_INCREMENT,
   `item` VARCHAR(50) NOT NULL,
   `IdPedido` INT NOT NULL,
   `preparado` TINYINT(1) NOT NULL,
@@ -168,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `bar`.`Itens_do_Pedido` (
   `cpfgarcom_resp` VARCHAR(12) NOT NULL,
   `detalhes` VARCHAR(45) NULL,
   `id_estoque` INT NOT NULL,
-  PRIMARY KEY (`IdPedido`),
+  PRIMARY KEY (`idItem`),
   CONSTRAINT `idPedido`
     FOREIGN KEY (`IdPedido`)
     REFERENCES `bar`.`Pedido` (`idPedido`)
