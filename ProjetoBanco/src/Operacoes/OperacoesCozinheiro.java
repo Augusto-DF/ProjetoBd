@@ -73,7 +73,7 @@ public class OperacoesCozinheiro {
 						listaPreparar.get(i).getPedido());
 			}
 			Scanner escolha = new Scanner(System.in);
-			System.out.println("Escolha o pedido para entregar: ");
+			System.out.println("Escolha o pedido para preparar: ");
 			System.out.print("Resposta: ");
 			target = escolha.nextInt();
 			
