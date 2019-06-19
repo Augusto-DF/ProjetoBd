@@ -8,6 +8,7 @@ public class Pedido {
 	
 	public Pedido() {
 		super();
+		this.cpfcliente = null;
 	}
 	
 	public Pedido(String cpfcliente, String formaPagamento) {

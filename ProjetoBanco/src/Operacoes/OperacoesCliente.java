@@ -78,11 +78,13 @@ public class OperacoesCliente {
 		if(pedidodao.buscarPedido(cliente.getCpf()) == null ){
 			Scanner resp = new Scanner(System.in);
 			
+			//System.out.println(pedidodao.buscarPedido(cliente.getCpf()).getCliente());
+			
 			System.out.println("Qual a forma do pagamento que deseja? ");
 			System.out.print("Resposta: ");
 			
 			String resposta = resp.nextLine();
-			pedido = new Pedido(cliente.getCpf(), resposta);		
+			pedido = new Pedido(cliente.getCpf(), resposta);
 			
 			pedidodao.inserir(pedido);
 			
@@ -95,8 +97,12 @@ public class OperacoesCliente {
 		}
 		exibirCardapio();		
 		
-		while(/*item != "n"*/perguntasPedido(pedido) == true) {
-			//perguntasPedido(pedido);			
+		int finaliza = 0;
+		while(/*finaliza == 0*/perguntasPedido(pedido)!=false) {
+		/*	perguntasPedido(pedido);	
+			if(perguntasPedido(pedido) == false) {
+				finaliza = 1;
+			}*/
 		}
 		
 		System.out.println("Pedido indexado.");
@@ -105,7 +111,6 @@ public class OperacoesCliente {
 	}
 	
 	public boolean perguntasPedido(Pedido pedido) throws Exception {
-		
 		ItensPedidoDAO ipdao = new ItensPedidoDAO();
 		ItemEstoqueDAO iedao = new ItemEstoqueDAO();
 		GarcomDAO gdao = new GarcomDAO();
@@ -191,7 +196,7 @@ public class OperacoesCliente {
 		}
 		System.out.println("---------------------------------");
 		
-		acoes(listaOperacoes());
+		//acoes(listaOperacoes());
 	}
 	
 	public void pedirConta() throws Exception {
