@@ -113,6 +113,7 @@ public class ClienteDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Não foi possível encontrar!");
+			return null;
 		}
 		
 		return c;

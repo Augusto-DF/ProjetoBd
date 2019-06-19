@@ -31,6 +31,7 @@ public class Menu {
 		System.out.println("2. Gerente");
 		System.out.println("3. Garçom");
 		System.out.println("4. Cozinheiro");
+		System.out.println("5. Não tem cadastro? Cadastre-se.");
 		System.out.println("0. Sair do Programa");
 		System.out.print("Resposta: ");
 		int resposta = entrada.nextInt();
@@ -51,6 +52,9 @@ public class Menu {
 			break;
 		case 4:
 			exibirMenuCozinheiro();
+			break;
+		case 5:
+			cadastroCliente();
 			break;
 		default:
 			if(tipo == 0) {
@@ -161,5 +165,39 @@ public class Menu {
 		} else {
 			System.out.println("CPF não encontrado! Inicie novamente!");
 		}		
+	}
+	
+	public void cadastroCliente() throws Exception {
+		Cliente c = new Cliente();
+		Scanner r0 = new Scanner(System.in);
+		Scanner r1 = new Scanner(System.in);
+		Scanner r2 = new Scanner(System.in);
+		Scanner r3 = new Scanner(System.in);
+		System.out.println("Será necessário alguns dados: ");
+		System.out.print("Informe seu cpf: ");
+		c.setCpf(r0.nextLine());
+		if(!c.getCpf().equals(null)) {
+			System.out.print("Informe seu Nome: ");
+			c.setNome(r1.nextLine());
+			
+			System.out.print("Informe sua Data de Nascimento: ");
+			c.setDataNasc(r2.nextLine());
+			
+			System.out.print("Informe sua Senha: ");
+			c.setSenha(r3.nextLine());
+		}else {
+			System.out.println("Cpf nulos são inválidos. Fazendo Logout...");
+			exibirMenu(exibirEscolhadeUsuario());
+		}
+		
+		ClienteDAO cdao = new ClienteDAO();
+		if(cdao.buscarCPF(c.getCpf()) != null) {
+			System.out.println("Cliente ja existe. Fazendo logout...");
+			exibirMenu(exibirEscolhadeUsuario());
+		}else {
+			cdao.inserir(c);
+			System.out.println("Cliente adicionado. Voltando a pagina inicial...");
+			exibirMenu(exibirEscolhadeUsuario());
+		}
 	}
 }

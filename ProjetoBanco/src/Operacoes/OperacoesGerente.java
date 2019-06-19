@@ -28,7 +28,6 @@ public class OperacoesGerente {
 		System.out.println("Bem-Vindo a nosso serviço de gerenciamento!");
 		System.out.println("O que deseja fazer agora?");
 		System.out.println("1. Adicionar item no estoque");
-		System.out.println("2. Remover item no estoque");
 		System.out.println("0. Logout");
 		System.out.print("Resposta: ");
 		int resposta = entrada.nextInt();
