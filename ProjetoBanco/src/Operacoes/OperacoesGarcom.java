@@ -64,7 +64,6 @@ public class OperacoesGarcom {
 		ArrayList<ItensPedido> listaEntrega = new ArrayList();
 		listaEntrega = ipdao.listarPorResponsavel(garcom.getCpf());
 		
-		System.out.println(garcom.getCpf());
 		/* 2 - Dos itens Preparados escolher 1 para entregar */
 		int target = -1;
 		

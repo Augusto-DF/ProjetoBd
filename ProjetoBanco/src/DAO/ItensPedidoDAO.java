@@ -183,6 +183,47 @@ public ArrayList<ItensPedido> listarPorResponsavel(String resp){
 	return itensPedido;
 }
 
+
+public ArrayList<ItensPedido> listarPorPreparo(){
+	
+	ArrayList<ItensPedido> itensPedido = new ArrayList();
+	PreparedStatement ps = null;
+	ResultSet rs = null;
+	ItensPedido ip = null;
+	
+	try {
+		ps = this.conn.prepareStatement("SELECT * FROM itens_do_pedido "
+				+ "WHERE preparado = 0 and entregue = 0");
+		rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			
+			ip = new ItensPedido();
+			ip.setIdItem(rs.getInt(1));
+			ip.setItem(rs.getString(2));
+			ip.setPedido(rs.getInt(3));
+			ip.setPreparado(rs.getBoolean(4));
+			ip.setEntregue(rs.getBoolean(5));
+			ip.setQuantidade(rs.getInt(6));
+			ip.setResponsavel(rs.getString(7));
+			ip.setDetalhes(rs.getString(8));
+			ip.setEstoque(rs.getInt(9));
+			
+			itensPedido.add(ip);
+		}
+		
+	} catch (SQLException e) {
+		System.out.println("Não foi possível listar!");
+	}
+	
+	if(itensPedido.isEmpty()) {
+		System.out.println("Não ha pedidos preparados para a preparo");
+		return null;
+	}
+	
+	return itensPedido;
+}
+
 	public void close() throws SQLException {
 		this.conn.close();
 	}

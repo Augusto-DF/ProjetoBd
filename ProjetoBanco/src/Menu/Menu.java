@@ -11,7 +11,9 @@ import Entidades.Cozinheiro;
 import Entidades.Garcom;
 import Entidades.Gerente;
 import Operacoes.OperacoesCliente;
+import Operacoes.OperacoesCozinheiro;
 import Operacoes.OperacoesGarcom;
+import Operacoes.OperacoesGerente;
 
 public class Menu {
 	
@@ -86,7 +88,7 @@ public class Menu {
 		}
 	}
 	
-	public void exibirMenuGerente() {
+	public void exibirMenuGerente() throws Exception {
 		System.out.println("-----------------------------------------");
 		System.out.println("Bem-Vindo, querido gerente!");
 		System.out.println("Informe seu cpf (Somente Números)");
@@ -99,9 +101,11 @@ public class Menu {
 			System.out.println("Informe sua senha!");
 			System.out.print("Resposta: ");
 			String senha = entrada.nextLine();
-			if(senha.equals(g.getSenha()))
+			if(senha.equals(g.getSenha())) {
 				System.out.println("Logado! :D");
-			else {
+				OperacoesGerente og = new OperacoesGerente(g);
+				og.acoes(og.listaOperacoes());
+			}else {
 				System.out.println("Senha incorreta! Inicie novamente!");
 			}
 		} else {
@@ -134,7 +138,7 @@ public class Menu {
 		}	
 	}
 	
-	public void exibirMenuCozinheiro() {
+	public void exibirMenuCozinheiro() throws Exception {
 		System.out.println("-----------------------------------------");
 		System.out.println("Bem-Vindo, querido cozinheiro!");
 		System.out.println("Informe seu cpf (Somente Números)");
@@ -147,9 +151,11 @@ public class Menu {
 			System.out.println("Informe sua senha!");
 			System.out.print("Resposta: ");
 			String senha = entrada.nextLine();
-			if(senha.equals(c.getSenha()))
+			if(senha.equals(c.getSenha())) {
 				System.out.println("Logado! :D");
-			else {
+				OperacoesCozinheiro oc = new OperacoesCozinheiro(c);
+				oc.acoes(oc.listaOperacoes());
+			}else {
 				System.out.println("Senha incorreta! Inicie novamente!");
 			}
 		} else {
