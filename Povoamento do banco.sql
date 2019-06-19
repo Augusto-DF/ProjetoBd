@@ -41,9 +41,3 @@ insert into itens_do_estoque values(123, "Caipiroska - Da qualidade", 20, 1.99);
 insert into itens_do_estoque values(123, "Tequila - Da qualidade", 20, 1.99);
 insert into itens_do_estoque values(123, "Vinho - Da qualidade", 20, 1.99);
 insert into itens_do_estoque values(123, "Corote - É corote né...", 20, 2.50);
-
-#Pedidos
-insert into pedido values("5", "Cartão", 0);
-insert into pedido values("0", "Cartão", 0);
-
-

@@ -76,7 +76,6 @@ public class Menu {
 		String resposta = this.entrada.nextLine();
 		ClienteDAO cdao = new ClienteDAO();
 		Cliente c = cdao.buscarCPF(resposta);
-		System.out.println(c.getNome());
 		if(c != null) {
 			System.out.println("Informe sua senha!");
 			System.out.print("Resposta: ");
