@@ -11,6 +11,7 @@ import Entidades.Cozinheiro;
 import Entidades.Garcom;
 import Entidades.Gerente;
 import Operacoes.OperacoesCliente;
+import Operacoes.OperacoesGarcom;
 
 public class Menu {
 	
@@ -108,7 +109,7 @@ public class Menu {
 		}		
 	}
 	
-	public void exibirMenuGarcom() {
+	public void exibirMenuGarcom() throws Exception {
 		System.out.println("-----------------------------------------");
 		System.out.println("Bem-Vindo, querido garçom!");
 		System.out.println("Informe seu cpf (Somente Números)");
@@ -121,9 +122,11 @@ public class Menu {
 			System.out.println("Informe sua senha!");
 			System.out.print("Resposta: ");
 			String senha = entrada.nextLine();
-			if(senha.equals(g.getSenha()))
+			if(senha.equals(g.getSenha())) {
 				System.out.println("Logado! :D");
-			else {
+				OperacoesGarcom og = new OperacoesGarcom(g);
+				og.acoes(og.listaOperacoes());
+			}else {
 				System.out.println("Senha incorreta! Inicie novamente!");
 			}
 		} else {

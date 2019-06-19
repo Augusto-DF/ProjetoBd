@@ -11,6 +11,11 @@ public class ItensPedido {
 	private int idEstoque;
 	private int quantidade;
 	
+	public ItensPedido() {
+		// TODO Auto-generated constructor stub
+	}	
+	
+	
 	public ItensPedido(int idPedido, String item, String cpfresponsavel,
 			String detalhes, int idEstoque,
 			int quantidade) {
@@ -24,10 +29,15 @@ public class ItensPedido {
 		this.idEstoque = idEstoque;
 		this.quantidade = quantidade;
 	}
+	
 
-	public ItensPedido() {
-		// TODO Auto-generated constructor stub
-	}	
+	public int getIdItem() {
+		return idItem;
+	}
+
+	public void setIdItem(int idItem) {
+		this.idItem = idItem;
+	}
 
 	public int getPedido() {
 		return idPedido;
