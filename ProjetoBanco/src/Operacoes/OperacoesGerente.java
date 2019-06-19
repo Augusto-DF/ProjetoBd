@@ -98,5 +98,8 @@ public class OperacoesGerente {
 				System.out.println("Item inserido no estoque");
 			}
 		}
+		
+		iedao.close();
+		acoes(listaOperacoes());
 	}
 }
