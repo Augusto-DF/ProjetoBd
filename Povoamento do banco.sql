@@ -1,4 +1,4 @@
-#Cpf de 1 digito so pra facilitar na hora de logar
+#Cpf de 1 digito so pra facilitar na hora de logar (versao inicial)
 
 insert into pessoa (cpf, nome, datanasc, senha) values ("0", "Cliente M", "05/02/1995", "...");
 insert into pessoa (cpf, nome, datanasc, senha) values ("1", "Gerente A", "05/02/1995", "...");
