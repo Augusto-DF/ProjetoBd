@@ -9,9 +9,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 CREATE SCHEMA IF NOT EXISTS `bar` DEFAULT CHARACTER SET utf8 ;
 USE `bar` ;
 
--- -----------------------------------------------------
--- Table `mydb`.`Pessoa`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bar`.`Pessoa` (
   `cpf` VARCHAR(12) NOT NULL,
   `nome` VARCHAR(50) NOT NULL,
